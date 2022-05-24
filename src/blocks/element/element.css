@@ -1,0 +1,8 @@
+.element {
+  background-color: #fff;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: 282px minmax(79px, 1fr);
+  position: relative;
+}

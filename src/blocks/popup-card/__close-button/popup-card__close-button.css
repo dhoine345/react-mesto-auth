@@ -1,0 +1,7 @@
+.popup-card__close-button {
+  background-image: url(../../../image/Close-Icon.svg);
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  width: 32px;
+  height: 32px;
+}

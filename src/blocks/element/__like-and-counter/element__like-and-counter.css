@@ -1,0 +1,7 @@
+.element__like-and-counter {
+  align-self: center;
+  display: flex;
+  flex-wrap: wrap;
+  width: 22px;
+  height: 35px;
+}
