@@ -9,6 +9,11 @@ import Footer from './Footer';
 import ImagePopup from "./ImagePopup";
 import { api } from "../utils/api";
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import {Redirect, Switch, Route, useHistory} from "react-router-dom";
+import { getContent, register } from '../utils/auth'
+import ProtectedRoute from "./ProtectedRoute";
+import Register from "./Register";
+import Login from "./Login";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -20,6 +25,8 @@ function App() {
   const [isDeleteConfirmPopupOpen, setDeleteConfirmPopupOpen] = useState(false);
   const [selectedDeleteCard, setSelectedDeleteCard] = useState({});
   const [isRenderLoading, setRenderLoading] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     Promise.all([api.getProfile(), api.getInitialCards()])
@@ -98,19 +105,49 @@ function App() {
     setDeleteConfirmPopupOpen(false);
   };
 
+  const checkToken = () => {
+    if(localStorage.getItem('jwt')) {
+      let token = localStorage.getItem('jwt');
+      getContent(token)
+        .then(res => {
+          setEmail(res.data.email);
+          setLoggedIn(true);
+        })
+        .catch(err => console.log(err.message));
+    }
+  }
+
+  const handleRegister = (email, password) => {
+    register(password, email)
+      .then(response => {
+        console.log('register', response)
+        })
+  }
+
   return (
     <div className="App page">
       <CurrentUserContext.Provider value={currentUser}>
-        <Header className="header" />
-        <Main className="content"
-          onEditProfile={handleEditProfileClick}
-          onAddPlace={handleAddPlaceClick}
-          onEditAvatar={handleEditAvatarClick}
-          onCardClick={handleCardClick}
-          onCardDelete={handleDeleteButtonClick}
-          cards={cards}
-          handleCardLike={handleCardLike}
-        />
+        <Header className="header" loggedIn={loggedIn} email={email} />
+        <Switch>
+          <ProtectedRoute exact path="/" loggedIn={loggedIn}>
+            <Main className="content"
+              onEditProfile={handleEditProfileClick}
+              onAddPlace={handleAddPlaceClick}
+              onEditAvatar={handleEditAvatarClick}
+              onCardClick={handleCardClick}
+              onCardDelete={handleDeleteButtonClick}
+              cards={cards}
+              handleCardLike={handleCardLike}
+            />
+          </ProtectedRoute>
+          <Route path="/sign-up">
+            <Register onRegister={handleRegister} />
+          </Route>
+          <Route path="/sign-in">
+            <Login onRegister={handleRegister} />
+          </Route>
+        </Switch>
+
         <Footer className="footer" />
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}

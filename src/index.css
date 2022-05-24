@@ -52,3 +52,11 @@
 
 @import url(./blocks/button-hover/button-hover.css);
 @import url(./blocks/popup/_opened/popup_opened.css);
+
+@import url(./blocks/entry/entry.css);
+@import url(./blocks/entry/__footer-link/entry__footer-link.css);
+@import url(./blocks/entry/__footer/entry__footer.css);
+@import url(./blocks/entry/__form-input/entry__form-input.css);
+@import url(./blocks/entry/__form/entry__form.css);
+@import url(./blocks/entry/__submit-button/entry__submit-button.css);
+@import url(./blocks/entry/__title/entry__title.css);

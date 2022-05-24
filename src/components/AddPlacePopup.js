@@ -6,8 +6,6 @@ function AddPlacePopup({onAddPlace, isOpen, onClose, renderLoading}) {
   const [name, setName] = useState('');
   const [url, setUrl] = useState('')
 
-  const [formErrors, setFormErrors] = useState('')
-  const [inputNameValidation, setInputNameValidation] = useState('')
 
   const handleChangeName = (e) => setName(e.target.value);
   const handleChangeUrl = (e) => setUrl(e.target.value);
@@ -21,11 +19,9 @@ function AddPlacePopup({onAddPlace, isOpen, onClose, renderLoading}) {
   };
 
   useEffect(() => {
-    if(isOpen) {
-      setName('')
-      setUrl('')
-    }
-  })
+    setName('')
+    setUrl('')
+}, [isOpen])
 
   return (
     <PopupWithForm
@@ -48,7 +44,7 @@ function AddPlacePopup({onAddPlace, isOpen, onClose, renderLoading}) {
       onChange={handleChangeName}
       value={name}
     />
-    <span className="popup__error input-place-name-error" formErrors={formErrors}></span>
+    <span className="popup__error input-place-name-error"></span>
     <input
       type="url"
       name="link"
