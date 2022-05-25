@@ -14,11 +14,13 @@ import { getContent, register, authorize } from '../utils/auth'
 import ProtectedRoute from "./ProtectedRoute";
 import Register from "./Register";
 import Login from "./Login";
+import InfoTooltip from "./InfoTooltip";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setisAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = useState(false);
+  const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
@@ -26,6 +28,7 @@ function App() {
   const [selectedDeleteCard, setSelectedDeleteCard] = useState({});
   const [isRenderLoading, setRenderLoading] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [regOk, setRegOk] = useState(false);
   const [email, setEmail] = useState("");
   const history = useHistory();
 
@@ -114,6 +117,7 @@ function App() {
     setisEditAvatarPopupOpen(false);
     setSelectedCard({});
     setDeleteConfirmPopupOpen(false);
+    setInfoTooltipPopupOpen(false);
   };
 
   const checkToken = () => {
@@ -130,10 +134,15 @@ function App() {
 
   const handleRegister = (email, password) => {
     register(email, password)
-      .then(res => {
-        console.log('register', res)
-        history.push('/sign-in');
-        })
+      .then(() => {
+          setInfoTooltipPopupOpen(true);
+          setRegOk(true);
+          history.push('/sign-in')
+      })
+      .catch(() => {
+        setInfoTooltipPopupOpen(true);
+        setRegOk(false);
+      })
   }
 
   const handleLogin = (email, password) => {
@@ -144,7 +153,7 @@ function App() {
           checkToken();
         }
         setLoggedIn(true);
-        })
+      })
   }
 
   return (
@@ -201,6 +210,11 @@ function App() {
           isOpen={isDeleteConfirmPopupOpen}
           onDeleteConfirm={handleCardDelete}
           renderLoading={isRenderLoading}
+        />
+        <InfoTooltip
+          onClose={closeAllPopups}
+          regOk={regOk}
+          isOpen={isInfoTooltipPopupOpen}
         />
       </CurrentUserContext.Provider>
     </div>
