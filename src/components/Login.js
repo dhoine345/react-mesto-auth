@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Login({ onRegister }) {
+function Login({ onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -10,7 +10,7 @@ function Login({ onRegister }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onRegister(email, password);
+    onLogin(email, password);
   }
 
   return (

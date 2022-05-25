@@ -10,7 +10,7 @@ import ImagePopup from "./ImagePopup";
 import { api } from "../utils/api";
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import {Redirect, Switch, Route, useHistory} from "react-router-dom";
-import { getContent, register } from '../utils/auth'
+import { getContent, register, authorize } from '../utils/auth'
 import ProtectedRoute from "./ProtectedRoute";
 import Register from "./Register";
 import Login from "./Login";
@@ -27,6 +27,17 @@ function App() {
   const [isRenderLoading, setRenderLoading] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [email, setEmail] = useState("");
+  const history = useHistory();
+
+  useEffect(() => {
+    if(loggedIn) {
+      history.push('/')
+    }
+  }, [loggedIn]);
+
+  useEffect(() => {
+    checkToken();
+  },[]);
 
   useEffect(() => {
     Promise.all([api.getProfile(), api.getInitialCards()])
@@ -118,16 +129,28 @@ function App() {
   }
 
   const handleRegister = (email, password) => {
-    register(password, email)
-      .then(response => {
-        console.log('register', response)
+    register(email, password)
+      .then(res => {
+        console.log('register', res)
+        history.push('/sign-in');
+        })
+  }
+
+  const handleLogin = (email, password) => {
+    authorize(email, password)
+      .then(res => {
+        if(res.token) {
+          localStorage.setItem('jwt', res.token);
+          checkToken();
+        }
+        setLoggedIn(true);
         })
   }
 
   return (
     <div className="App page">
       <CurrentUserContext.Provider value={currentUser}>
-        <Header className="header" loggedIn={loggedIn} email={email} />
+        <Header className="header" setLoggedIn={setLoggedIn} email={email} />
         <Switch>
           <ProtectedRoute exact path="/" loggedIn={loggedIn}>
             <Main className="content"
@@ -144,7 +167,7 @@ function App() {
             <Register onRegister={handleRegister} />
           </Route>
           <Route path="/sign-in">
-            <Login onRegister={handleRegister} />
+            <Login onLogin={handleLogin} />
           </Route>
         </Switch>
 
