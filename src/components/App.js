@@ -9,7 +9,7 @@ import Footer from './Footer';
 import ImagePopup from "./ImagePopup";
 import { api } from "../utils/api";
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
-import {Redirect, Switch, Route, useHistory} from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import { getContent, register, authorize } from '../utils/auth'
 import ProtectedRoute from "./ProtectedRoute";
 import Register from "./Register";
@@ -133,6 +133,7 @@ function App() {
   }
 
   const handleRegister = (email, password) => {
+    setRenderLoading(true)
     register(email, password)
       .then(() => {
           setInfoTooltipPopupOpen(true);
@@ -142,10 +143,11 @@ function App() {
       .catch(() => {
         setInfoTooltipPopupOpen(true);
         setRegOk(false);
-      })
+      }).finally(() => setRenderLoading(false));
   }
 
   const handleLogin = (email, password) => {
+    setRenderLoading(true)
     authorize(email, password)
       .then(res => {
         if(res.token) {
@@ -153,7 +155,7 @@ function App() {
           checkToken();
         }
         setLoggedIn(true);
-      })
+      }).finally(() => setRenderLoading(false));
   }
 
   return (
@@ -173,10 +175,16 @@ function App() {
             />
           </ProtectedRoute>
           <Route path="/sign-up">
-            <Register onRegister={handleRegister} />
+            <Register
+              onRegister={handleRegister}
+              renderLoading={isRenderLoading}
+            />
           </Route>
           <Route path="/sign-in">
-            <Login onLogin={handleLogin} />
+            <Login
+              onLogin={handleLogin}
+              renderLoading={isRenderLoading}
+            />
           </Route>
         </Switch>
 

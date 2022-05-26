@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Login({ onLogin }) {
+function Login({ onLogin, renderLoading }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -35,7 +35,7 @@ function Login({ onLogin }) {
           value={password}
           required
         />
-        <button className="entry__submit-button" type="submit">Войти</button>
+        <button className="entry__submit-button" type="submit">{renderLoading ? 'Вход...' : 'Войти'}</button>
       </form>
     </div>
   );
