@@ -161,7 +161,7 @@ function App() {
   return (
     <div className="App page">
       <CurrentUserContext.Provider value={currentUser}>
-        <Header className="header" setLoggedIn={setLoggedIn} email={email} />
+        <Header className="header" setLoggedIn={setLoggedIn} email={email} loggedIn={loggedIn} />
         <Switch>
           <ProtectedRoute exact path="/" loggedIn={loggedIn}>
             <Main className="content"

@@ -1,3 +1,18 @@
 .header__link_type_exit {
   color: #A9A9A9;
 }
+
+@media screen and (max-width: 500px) {
+  .header__link_type_exit {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 1.22;
+    padding-top: 20px;
+    margin: auto;
+    border-bottom: 1px solid rgba(84, 84, 84, .7);
+    padding-bottom: 40px;
+    margin-top: 12px;
+    width: 100%;
+    text-align: center;
+  }
+}

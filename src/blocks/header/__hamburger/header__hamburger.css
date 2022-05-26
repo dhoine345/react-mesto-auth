@@ -1,0 +1,18 @@
+.header__hamburger {
+  background-color: black;
+  background-image: url(../../../images/hamburger-icon.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 20px;
+  border: none;
+  padding: 0;
+  display: none;
+}
+
+@media screen and (max-width: 500px) {
+  .header__hamburger {
+    display: block;
+    margin-right: 30px;
+  }
+}

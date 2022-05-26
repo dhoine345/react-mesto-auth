@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width:600px) {
-  .popup__container-form-close-button {
+  .popup__close-button {
     width: 20px;
     height: 20px;
     background-size: contain;

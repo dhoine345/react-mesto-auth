@@ -10,6 +10,11 @@
 @import url(./blocks/header/__link/header__link.css);
 @import url(./blocks/header/__link/_type/header__link_type_exit.css);
 @import url(./blocks/header/__nav/header__nav.css);
+@import url(./blocks/header/__hamburger/header__hamburger.css);
+@import url(./blocks/header/__hamburger/_hidden/header__hamburger_hidden.css);
+@import url(./blocks/header/__nav/_visible/header__nav_visible.css);
+@import url(./blocks/header/__logo-container/header__logo-container.css);
+@import url(./blocks/header/_logout/header_logout.css);
 
 @import url(./blocks/profile/profile.css);
 @import url(./blocks/profile/__avatar/profile__avatar.css);

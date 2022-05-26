@@ -18,7 +18,7 @@ const Card = ({card, onCardClick, onCardLike, onCardDelete}) => {
   return (
     <article className="element">
       <img className="element__place-photo"
-      //src={card.link}
+      src={card.link}
       onClick={handleClick}
       alt={card.name}
       />

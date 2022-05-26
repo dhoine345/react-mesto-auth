@@ -17,5 +17,6 @@
   .header {
     max-width: 100%;
     padding: 28px 0 31.6px;
+    flex-direction: column-reverse;
   }
 }

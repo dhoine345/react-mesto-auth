@@ -3,3 +3,13 @@
   flex-direction: row;
   margin-top: 7px;
 }
+
+@media screen and (max-width: 500px) {
+  .header__nav {
+    display: none;
+    flex-direction: column;
+
+
+    width: 100%;
+  }
+}
