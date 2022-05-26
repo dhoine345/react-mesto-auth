@@ -1,3 +1,7 @@
 .entry__form {
-
+  margin: 0 auto;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 358px;
 }

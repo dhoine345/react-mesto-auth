@@ -19,7 +19,7 @@ function Register({ onRegister }) {
       <h3 className="entry__title">Регистрация</h3>
       <form className="entry__form" onSubmit={handleSubmit}>
         <input
-          className="entry__form-input entry__form-input_type_email"
+          className="entry__form-input"
           type="email"
           placeholder="Email"
           name="email"
@@ -28,7 +28,7 @@ function Register({ onRegister }) {
           required
         />
         <input
-          className="entry__form-input entry__form-input_type_password"
+          className="entry__form-input"
           type="password"
           placeholder="Пароль"
           name="password"
@@ -36,9 +36,9 @@ function Register({ onRegister }) {
           value={password}
           required
         />
-        <button className="entry__submit-button" type="submit">Зарегистрироваться</button>
+        <button className="entry__submit-button button-hover" type="submit">Зарегистрироваться</button>
       </form>
-      <p className="entry__footer">Уже зарегистрированы? <Link to="/sign-in" className="entry__footer-link">Войти</Link></p>
+      <p className="entry__footer">Уже зарегистрированы? <Link to="/sign-in" className="entry__footer-link button-hover">Войти</Link></p>
     </div>
   );
 }

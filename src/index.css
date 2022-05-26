@@ -50,6 +50,8 @@
 @import url(./blocks/popup/__submit-button/_disabled/popup__submit-button_disabled.css);
 @import url(./blocks/popup/__form/_type/popup__form_type_delete.css);
 @import url(./blocks/popup/__form/_type/popup__form_type_avatar.css);
+@import url(./blocks/popup/__infotooltip-image/popup__infotooltip-image.css);
+@import url(./blocks/popup/__infotooltip-title/popup__infotooltip-title.css);
 
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/footer/__copyright/footer__copyright.css);

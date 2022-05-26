@@ -1,3 +1,7 @@
 .entry {
-  
+  max-width: 880px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 60px 0 140px
 }

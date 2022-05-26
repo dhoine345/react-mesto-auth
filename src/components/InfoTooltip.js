@@ -11,11 +11,11 @@ function InfoTooltip({ onClose, regOk, isOpen }) {
         onClick={onClose}
       />
       <img
-        className='popup__image-infotooltip'
+        className='popup__infotooltip-image'
         src={regOk ? success : reject}
         alt='Иконка'
       />
-      <h2 className="popup__form-title">{regOk ? 'Вы успешно зарегистрировались!' : 'Что-то пошло не так! Попробуйте еще раз.'}</h2>
+      <h2 className="popup__infotooltip-title">{regOk ? 'Вы успешно зарегистрировались!' : 'Что-то пошло не так! Попробуйте еще раз.'}</h2>
       </div>
     </div>
   )

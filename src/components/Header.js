@@ -20,10 +20,10 @@ function Header({ setLoggedIn, email }) {
             <NavLink onClick={logOut} to='/sign-in' className='header__link header__link_type_exit'>Выйти</NavLink>
           </Route>
           <Route path='/sign-in'>
-            <NavLink to="/sign-up" className='header__link'>Регистрация</NavLink>
+            <NavLink to="/sign-up" className='header__link button-hover'>Регистрация</NavLink>
           </Route>
           <Route path='/sign-up'>
-            <NavLink to='/sign-in' className='header__link'>Войти</NavLink>
+            <NavLink to='/sign-in' className='header__link button-hover'>Войти</NavLink>
           </Route>
         </Switch>
       </div>

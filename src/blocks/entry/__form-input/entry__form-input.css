@@ -1,3 +1,11 @@
 .entry__form-input {
-
+  background-color: black;
+  color: #ccc;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.21;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  min-height: 27px;
+  margin-bottom: 30px;
 }
