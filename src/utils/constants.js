@@ -6,4 +6,7 @@ export const apiConfig = {
   }
 };
 
+export const successAuth = 'Вы успешно зарегистрировались!'
+export const unSuccessAuth = 'Что-то пошло не так! Попробуйте еще раз.'
+
 

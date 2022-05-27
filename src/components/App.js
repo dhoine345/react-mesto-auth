@@ -15,6 +15,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import Register from "./Register";
 import Login from "./Login";
 import InfoTooltip from "./InfoTooltip";
+import { successAuth, unSuccessAuth} from '../utils/constants'
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -43,13 +44,15 @@ function App() {
   },[]);
 
   useEffect(() => {
-    Promise.all([api.getProfile(), api.getInitialCards()])
-      .then(([userData, cardsData]) => {
-        setCurrentUser(userData)
-        setCards(cardsData);
-      }).catch(err => {
-      console.log(`Ошибка: ${ err }`)
-    })
+    if(loggedIn) {
+      Promise.all([api.getProfile(), api.getInitialCards()])
+        .then(([userData, cardsData]) => {
+          setCurrentUser(userData)
+          setCards(cardsData);
+        }).catch(err => {
+        console.log(`Ошибка: ${ err }`)
+        })
+    }
   },[]);
 
   const handleEditProfileClick = () => setIsEditProfilePopupOpen(true);
@@ -121,8 +124,8 @@ function App() {
   };
 
   const checkToken = () => {
+    let token = localStorage.getItem('jwt');
     if(localStorage.getItem('jwt')) {
-      let token = localStorage.getItem('jwt');
       getContent(token)
         .then(res => {
           setEmail(res.data.email);
@@ -151,10 +154,15 @@ function App() {
     authorize(email, password)
       .then(res => {
         if(res.token) {
+          setInfoTooltipPopupOpen(true);
+          setRegOk(true);
           localStorage.setItem('jwt', res.token);
           checkToken();
         }
         setLoggedIn(true);
+      }).catch(() => {
+        setInfoTooltipPopupOpen(true);
+        setRegOk(false);
       }).finally(() => setRenderLoading(false));
   }
 
@@ -223,6 +231,8 @@ function App() {
           onClose={closeAllPopups}
           regOk={regOk}
           isOpen={isInfoTooltipPopupOpen}
+          successText = {successAuth}
+          unSuccessText = {unSuccessAuth}
         />
       </CurrentUserContext.Provider>
     </div>

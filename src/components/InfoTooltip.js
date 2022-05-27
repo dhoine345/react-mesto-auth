@@ -1,9 +1,9 @@
 import reject from '../images/reject.svg'
 import success from '../images/success.svg'
 
-function InfoTooltip({ onClose, regOk, isOpen }) {
+function InfoTooltip({ onClose, regOk, isOpen, successText, unSuccessText }) {
   return (
-    <div className={`popup ${isOpen ? 'popup_opened' : ''}`}>
+    <div className={`popup ${isOpen && 'popup_opened'}`}>
       <div className='popup__container'>
       <button
         className="popup__close-button button-hover"
@@ -15,7 +15,7 @@ function InfoTooltip({ onClose, regOk, isOpen }) {
         src={regOk ? success : reject}
         alt='Иконка'
       />
-      <h2 className="popup__infotooltip-title">{regOk ? 'Вы успешно зарегистрировались!' : 'Что-то пошло не так! Попробуйте еще раз.'}</h2>
+      <h2 className="popup__infotooltip-title">{regOk ? successText : unSuccessText}</h2>
       </div>
     </div>
   )
