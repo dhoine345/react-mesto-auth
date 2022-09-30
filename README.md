@@ -34,7 +34,7 @@
 ### Инструкция по локальному развертыванию проекта
 - Склонируйте репозиторий:
 ```
-git clone https://github.com/jakiehan/react-mesto-auth.git
+git clone https://github.com/dhoine345/react-mesto-auth.git
 ```
 - Установите зависимости:
 ```
