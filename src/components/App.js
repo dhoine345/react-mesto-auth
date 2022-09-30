@@ -53,7 +53,7 @@ function App() {
         console.log(`Ошибка: ${ err }`)
         })
     }
-  },[]);
+  },[loggedIn]);
 
   const handleEditProfileClick = () => setIsEditProfilePopupOpen(true);
   const handleAddPlaceClick = () => setisAddPlacePopupOpen(true);
